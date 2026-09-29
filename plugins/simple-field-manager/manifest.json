@@ -1,0 +1,26 @@
+{
+  "manifest_version": 1,
+  "version": "1.4",
+  "type": "APP",
+  "config": {
+    "html": "html/config.html",
+    "js": [
+      "js/config.js"
+    ],
+    "css": [
+      "css/config.css"
+    ],
+    "required_params": [
+      "setupDone"
+    ]
+  },
+  "icon": "image/icon.png",
+  "name": {
+    "ja": "シンプルフィールド一括管理",
+    "en": "Simple Field Manager"
+  },
+  "description": {
+    "ja": "アプリのフィールド設定(フィールド名・コード・必須/重複禁止/ラベル非表示など)を一覧でまとめて確認・編集できるシンプルなプラグインです。",
+    "en": "A simple plugin for viewing and bulk-editing app field settings (name, code, required/unique/no-label) in one list."
+  }
+}

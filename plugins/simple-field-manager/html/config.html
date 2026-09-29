@@ -1,0 +1,122 @@
+<div id="sfm-app">
+  <header class="sfm-toolbar">
+    <div class="sfm-toolbar-group">
+      <label class="sfm-label" for="sfm-sort-order">並び順</label>
+      <select id="sfm-sort-order" class="sfm-select">
+        <option value="form">フォーム順</option>
+        <option value="type">フィールドタイプ順</option>
+      </select>
+    </div>
+    <div class="sfm-toolbar-group">
+      <label class="sfm-label" for="sfm-type-filter">フィールドタイプ</label>
+      <select id="sfm-type-filter" class="sfm-select">
+        <option value="">すべて</option>
+      </select>
+    </div>
+    <div class="sfm-toolbar-spacer"></div>
+    <div id="sfm-field-count" class="sfm-field-count">フィールド数: -</div>
+  </header>
+
+  <div class="sfm-actions-bar">
+    <button id="sfm-copy-selected-btn" type="button" class="sfm-btn sfm-btn-secondary" disabled>
+      選択した項目をフィールドコードへコピー
+    </button>
+    <span id="sfm-selected-count" class="sfm-selected-count">0件選択中</span>
+  </div>
+
+  <div class="sfm-table-wrapper">
+    <table class="sfm-table">
+      <thead>
+        <tr>
+          <th class="sfm-col-check"><input type="checkbox" id="sfm-select-all" title="すべて選択"></th>
+          <th class="sfm-col-type">フィールドタイプ</th>
+          <th class="sfm-col-placement">配置</th>
+          <th class="sfm-col-name">フィールド名</th>
+          <th class="sfm-col-code">フィールドコード</th>
+          <th class="sfm-col-toggle">必須</th>
+          <th class="sfm-col-toggle">重複禁止</th>
+          <th class="sfm-col-toggle">ラベル非表示</th>
+          <th class="sfm-col-detail">詳細</th>
+        </tr>
+      </thead>
+      <tbody id="sfm-table-body">
+        <tr><td colspan="9" class="sfm-loading-row">読み込み中...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="sfm-footer">
+    <button id="sfm-help-btn" type="button" class="sfm-btn sfm-btn-outline">ヘルプ</button>
+    <div class="sfm-footer-right">
+      <button id="sfm-cancel-btn" type="button" class="sfm-btn sfm-btn-outline">キャンセル</button>
+      <button id="sfm-save-btn" type="button" class="sfm-btn sfm-btn-primary">保存</button>
+    </div>
+  </footer>
+</div>
+
+<!-- 詳細ダイアログ -->
+<div id="sfm-detail-modal" class="sfm-modal-overlay sfm-hidden">
+  <div class="sfm-modal">
+    <div class="sfm-modal-header">
+      <h3 id="sfm-detail-title">フィールド詳細</h3>
+      <button type="button" class="sfm-modal-close" data-close="sfm-detail-modal">&times;</button>
+    </div>
+    <div class="sfm-modal-body" id="sfm-detail-body"></div>
+    <div class="sfm-modal-footer">
+      <button type="button" class="sfm-btn sfm-btn-outline" data-close="sfm-detail-modal">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- 確認ダイアログ -->
+<div id="sfm-confirm-modal" class="sfm-modal-overlay sfm-hidden">
+  <div class="sfm-modal sfm-modal-small">
+    <div class="sfm-modal-header">
+      <h3>確認</h3>
+    </div>
+    <div class="sfm-modal-body">
+      <p id="sfm-confirm-message"></p>
+    </div>
+    <div class="sfm-modal-footer">
+      <button type="button" id="sfm-confirm-cancel-btn" class="sfm-btn sfm-btn-outline">キャンセル</button>
+      <button type="button" id="sfm-confirm-ok-btn" class="sfm-btn sfm-btn-primary">はい</button>
+    </div>
+  </div>
+</div>
+
+<!-- ヘルプダイアログ -->
+<div id="sfm-help-modal" class="sfm-modal-overlay sfm-hidden">
+  <div class="sfm-modal">
+    <div class="sfm-modal-header">
+      <h3>ヘルプ</h3>
+      <button type="button" class="sfm-modal-close" data-close="sfm-help-modal">&times;</button>
+    </div>
+    <div class="sfm-modal-body">
+      <p><strong>このプラグインでできること</strong></p>
+      <ul>
+        <li>アプリに配置済みのフィールドを一覧表示します。レコード番号・作成者・作成日時・更新者・更新日時・作業者などのシステムフィールドは、フォームに配置していなくても一覧に表示されます。</li>
+        <li>フィールド名・フィールドコードをその場で編集できます。</li>
+        <li>フィールドタイプに応じて「必須項目」「値の重複を禁止」「フィールド名を表示しない」を切り替えられます。</li>
+        <li>チェックボックスで選択した行だけ、フィールド名をフィールドコードへ一括コピーできます(使用できない文字は自動変換、重複するコードはスキップします)。</li>
+        <li>「詳細」ボタンでフィールドの設定内容を確認できます(閲覧のみ)。</li>
+      </ul>
+      <p><strong>注意</strong></p>
+      <ul>
+        <li>フィールドコードを変更すると、JavaScriptカスタマイズや外部連携、計算式などの参照が動作しなくなる場合があります。</li>
+        <li>「保存」をクリックすると、変更内容はすぐにアプリへ反映されます。</li>
+      </ul>
+    </div>
+    <div class="sfm-modal-footer">
+      <button type="button" class="sfm-btn sfm-btn-outline" data-close="sfm-help-modal">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- 保存中オーバーレイ -->
+<div id="sfm-loading-overlay" class="sfm-loading-overlay sfm-hidden">
+  <div class="sfm-spinner"></div>
+  <div id="sfm-loading-text" class="sfm-loading-text">保存中...</div>
+</div>
+
+<!-- トースト通知 -->
+<div id="sfm-toast" class="sfm-toast sfm-hidden"></div>

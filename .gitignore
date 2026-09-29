@@ -1,0 +1,9 @@
+# 秘密鍵は絶対にコミットしない
+*.ppk
+
+# ビルド成果物（GitHub Releases で配布）
+*.zip
+dist/
+
+node_modules/
+.DS_Store
