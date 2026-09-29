@@ -6,7 +6,7 @@
 
 | フォルダ | プラグイン名 | バージョン | プラグインID | 概要 |
 |---|---|---|---|---|
-| [simple-field-manager](plugins/simple-field-manager) | シンプルフィールド一括管理 | 1.4 | `ehpmdoijfnmgmpkcjjcifbflgfkpgihl` | フィールド設定（名前・コード・必須・重複禁止・ラベル非表示など）を一覧で確認・一括編集 |
+| [simple-field-manager](plugins/simple-field-manager) | フィールド一括管理 | 1.4 | `ehpmdoijfnmgmpkcjjcifbflgfkpgihl` | フィールド設定（名前・コード・必須・重複禁止・ラベル非表示など）を一覧で確認・一括編集 |
 
 ## ビルド（パッケージ化）
 
